@@ -2,12 +2,28 @@ import requests
 import streamlit as st
 from streamlit_lottie import  st_lottie
 
+#=============function to convert
+def con():
+    url = f'https://api.apilayer.com/currency_data/convert?to={val2}&from={val1}&amount={amt}'
+
+
+    payload = {}
+    headers= {"apikey": "3DPMnrLyoZQVDscZKWDpE91WMcq9pVwr"}
+
+    response = requests.request("GET", url, headers=headers, data = payload)
+
+    status_code = response.status_code
+    result = response.text.splitlines()
+    str1=str(result[-2])
+    str1.lstrip()
+    str1=str1.split(": ")
+
 
 st.set_page_config(page_title="Currency Exchange",page_icon=":currency_exchange:",layout="wide")
 col1,col2=st.columns(2)
 
 st.header("Currency Exchange :currency_exchange:")
-st.write("Made with :heart: by Preeti & Palasha")
+st.write("Made with :heart: by Sarvar Ansari")
 
 def img(url):
     res=requests.get(url)
@@ -19,21 +35,22 @@ def img(url):
 imagee=img("https://assets2.lottiefiles.com/packages/lf20_ta0lnlos.json")
 
 st.markdown("---------------")
+
+
 left_col,middle_col,right_col=st.columns(3)
-f= open("list.txt","r")
 with left_col:
-    val1=st.selectbox("Select Currency 1",[x for x in f.readlines()])
+    val1=st.selectbox("Select Currency 1",['AFN','EUR','ALL','DZD','USD','EUR','AOA','XCD','XCD','ARS','AMD','AWG','AUD','EUR','AZN','BSD','BHD','BDT','BBD','BYN','EUR','BZD','XOF','BMD','INR','BTN','BOB','BOV','USD','BAM','BWP','NOK','BRL','USD','BND','BGN','XOF','BIF','CVE','KHR','XAF','CAD','KYD','XAF','XAF','CLP','CLF','CNY','AUD','AUD','COP','COU','KMF','CDF','XAF','NZD','CRC','XOF','HRK','CUP','CUC','ANG','EUR','CZK','DKK','DJF','XCD','DOP','USD','EGP','SVC','USD','XAF','ERN','EUR','SZL','ETB','EUR','FKP','DKK','FJD','EUR','EUR','EUR','XPF','EUR','XAF','GMD','GEL','EUR','GHS','GIP','EUR','DKK','XCD','EUR','USD','GTQ','GBP','GNF','XOF','GYD','HTG','USD','AUD','EUR','HNL','HKD','HUF','ISK','INR','IDR','XDR','IRR','IQD','EUR','GBP','ILS','EUR','JMD','JPY','GBP','JOD','KZT','KES','AUD','KPW','KRW','KWD','KGS','LAK','EUR','LBP','LSL','ZAR','LRD','LYD','CHF','EUR','EUR','MOP','MKD','MGA','MWK','MYR','MVR','XOF','EUR','USD','EUR','MRU','MUR','EUR','XUA','MXN','MXV','USD','MDL','EUR','MNT','EUR','XCD','MAD','MZN','MMK','NAD','ZAR','AUD','NPR','EUR','XPF','NZD','NIO','XOF','NGN','NZD','AUD','USD','NOK','OMR','PKR','USD','PAB','USD','PGK','PYG','PEN','PHP','NZD','PLN','EUR','USD','QAR','EUR','RON','RUB','RWF','EUR','SHP','XCD','XCD','EUR','EUR','XCD','WST','EUR','STN','SAR','XOF','RSD','SCR','SLL','SGD','ANG','XSU','EUR','EUR','SBD','SOS','ZAR','SSP','EUR','LKR','SDG','SRD','NOK','SEK','CHF','CHE','CHW','SYP','TWD','TJS','TZS','THB','USD','XOF','NZD','TOP','TTD','TND','TRY','TMT','USD','AUD','UGX','UAH','AED','GBP','USD','USD','USN','UYU','UYI','UYW','UZS','VUV','VES','VND','USD','USD','XPF','MAD','YER','ZMW','ZWL','XBA','XBB','XBC','XBD','XTS','XXX','XAU','XPD','XPT','XAG','AFA','FIM','ALK','ADP','ESP','FRF','AOK','AON','AOR','ARA','ARP','ARY','RUR','ATS','AYM','AZM','RUR','BYB','BYR','RUR','BEC','BEF','BEL','BOP','BAD','BRB','BRC','BRE','BRN','BRR','BGJ','BGK','BGL','BUK','HRD','HRK','CYP','CSJ','CSK','ECS','ECV','GQE','EEK','XEU','FIM','FRF','FRF','FRF','GEK','RUR','DDM','DEM','GHC','GHP','GRD','FRF','GNE','GNS','GWE','GWP','ITL','ISJ','IEP','ILP','ILR','ITL','RUR','RUR','LAJ','LVL','LVR','LSM','ZAL','LTL','LTT','LUC','LUF','LUL','MGF','MWK','MVQ','MLF','MTL','MTP','FRF','MRO','FRF','MXP','RUR','FRF','MZE','MZM','NLG','ANG','NIC','PEH','PEI','PEN','PES','PLZ','PTE','FRF','ROK','ROL','RON','RUR','FRF','FRF','FRF','ITL','STD','CSD','EUR','SKK','SIT','ZAL','SDG','RHD','ESA','ESB','ESP','SDD','SDP','SRG','SZL','CHC','RUR','TJR','IDR','TPE','TRL','TRY','RUR','TMM','UGS','UGW','UAK','SUR','USS','UYN','UYP','RUR','VEB','VEF','VEF','VEF','VNC','YDD','YUD','YUM','YUN','ZRN','ZRZ','ZMK','ZWC','ZWD','ZWD','ZWN','ZWR','XFO','XRE','XFU'])
     val1=val1.strip()
 
 with middle_col:
     st_lottie(imagee,height="250px",key="coding")
 
 with right_col:
-    f.seek(0)
-    val2=st.selectbox("Select Currency 2",[x for x in f.readlines()])
+
+    val2=st.selectbox("Select Currency 2",['AFN','EUR','ALL','DZD','USD','EUR','AOA','XCD','XCD','ARS','AMD','AWG','AUD','EUR','AZN','BSD','BHD','BDT','BBD','BYN','EUR','BZD','XOF','BMD','INR','BTN','BOB','BOV','USD','BAM','BWP','NOK','BRL','USD','BND','BGN','XOF','BIF','CVE','KHR','XAF','CAD','KYD','XAF','XAF','CLP','CLF','CNY','AUD','AUD','COP','COU','KMF','CDF','XAF','NZD','CRC','XOF','HRK','CUP','CUC','ANG','EUR','CZK','DKK','DJF','XCD','DOP','USD','EGP','SVC','USD','XAF','ERN','EUR','SZL','ETB','EUR','FKP','DKK','FJD','EUR','EUR','EUR','XPF','EUR','XAF','GMD','GEL','EUR','GHS','GIP','EUR','DKK','XCD','EUR','USD','GTQ','GBP','GNF','XOF','GYD','HTG','USD','AUD','EUR','HNL','HKD','HUF','ISK','INR','IDR','XDR','IRR','IQD','EUR','GBP','ILS','EUR','JMD','JPY','GBP','JOD','KZT','KES','AUD','KPW','KRW','KWD','KGS','LAK','EUR','LBP','LSL','ZAR','LRD','LYD','CHF','EUR','EUR','MOP','MKD','MGA','MWK','MYR','MVR','XOF','EUR','USD','EUR','MRU','MUR','EUR','XUA','MXN','MXV','USD','MDL','EUR','MNT','EUR','XCD','MAD','MZN','MMK','NAD','ZAR','AUD','NPR','EUR','XPF','NZD','NIO','XOF','NGN','NZD','AUD','USD','NOK','OMR','PKR','USD','PAB','USD','PGK','PYG','PEN','PHP','NZD','PLN','EUR','USD','QAR','EUR','RON','RUB','RWF','EUR','SHP','XCD','XCD','EUR','EUR','XCD','WST','EUR','STN','SAR','XOF','RSD','SCR','SLL','SGD','ANG','XSU','EUR','EUR','SBD','SOS','ZAR','SSP','EUR','LKR','SDG','SRD','NOK','SEK','CHF','CHE','CHW','SYP','TWD','TJS','TZS','THB','USD','XOF','NZD','TOP','TTD','TND','TRY','TMT','USD','AUD','UGX','UAH','AED','GBP','USD','USD','USN','UYU','UYI','UYW','UZS','VUV','VES','VND','USD','USD','XPF','MAD','YER','ZMW','ZWL','XBA','XBB','XBC','XBD','XTS','XXX','XAU','XPD','XPT','XAG','AFA','FIM','ALK','ADP','ESP','FRF','AOK','AON','AOR','ARA','ARP','ARY','RUR','ATS','AYM','AZM','RUR','BYB','BYR','RUR','BEC','BEF','BEL','BOP','BAD','BRB','BRC','BRE','BRN','BRR','BGJ','BGK','BGL','BUK','HRD','HRK','CYP','CSJ','CSK','ECS','ECV','GQE','EEK','XEU','FIM','FRF','FRF','FRF','GEK','RUR','DDM','DEM','GHC','GHP','GRD','FRF','GNE','GNS','GWE','GWP','ITL','ISJ','IEP','ILP','ILR','ITL','RUR','RUR','LAJ','LVL','LVR','LSM','ZAL','LTL','LTT','LUC','LUF','LUL','MGF','MWK','MVQ','MLF','MTL','MTP','FRF','MRO','FRF','MXP','RUR','FRF','MZE','MZM','NLG','ANG','NIC','PEH','PEI','PEN','PES','PLZ','PTE','FRF','ROK','ROL','RON','RUR','FRF','FRF','FRF','ITL','STD','CSD','EUR','SKK','SIT','ZAL','SDG','RHD','ESA','ESB','ESP','SDD','SDP','SRG','SZL','CHC','RUR','TJR','IDR','TPE','TRL','TRY','RUR','TMM','UGS','UGW','UAK','SUR','USS','UYN','UYP','RUR','VEB','VEF','VEF','VEF','VNC','YDD','YUD','YUM','YUN','ZRN','ZRZ','ZMK','ZWC','ZWD','ZWD','ZWN','ZWR','XFO','XRE','XFU'])
     val2=val2.strip()
 
-f.close()
+
 
 
 left_col2,middle_col2,right_col2=st.columns(3)
@@ -63,10 +80,15 @@ str1=str1.split(": ")
 
 
 with right_col2:
-    st.write("Converted Amount")
-    st.text(str1[-1]+" "+f"{val2}")
+    if(val1==val2):
+        st.write("Converted Amount")
+        st.success(f"{amt}")
+
+    else:
+        st.write("Converted Amount")
+        st.success(str1[-1]+" "+f"{val2}")
 
 
-
+st.markdown('<style> body{text-align:center;} #MainMenu,footer{visibility:hidden;} .css-1dp5vir{visibility:hidden;}</style>',unsafe_allow_html=True)
 
 
