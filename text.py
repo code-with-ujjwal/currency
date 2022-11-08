@@ -29,9 +29,3 @@
 
 import requests
 
-url = 'https://api.exchangerate.host/convert?from=AFN&to=INR&amount=12&places=2&format=TSV'
-response = requests.get(url)
-data = response.text
-
-
-print(data)

@@ -70,28 +70,43 @@ with middle_col2:
 
 
 with right_col2:
-    if(val1==val2):
+    if(val1==val2 or amt==0):
         st.write("Converted Amount")
-        st.success(f"{amt}"+" "+f"{val1}")
+        st.success(f"{amt}"+" "+f"{val2}")
 
     else:
-        st.write("Error Occured")
+        
         try:
-            url = f'https://api.apilayer.com/currency_data/convert?to={val2}&from={val1}&amount={amt}'
+            st.write("Converted Amount:")
+            url = f'https://api.exchangerate.host/convert?from={val1}&to={val2}&amount={amt}&places=2&format=TSV'
+            response = requests.get(url)
+            data = response.text
+            liss=data.split('\t')
+            dis=str(liss[-1].strip("\n"))
+            #dis.strip("\n")
+            dis=dis.replace(",",".")
+            st.success(f"{dis}"+" "+f"{val2}")
+            
 
 
-            payload = {}
-            headers= {"apikey": "3DPMnrLyoZQVDscZKWDpE91WMcq9pVwr"}
 
-            response = requests.request("GET", url, headers=headers, data = payload)
 
-            status_code = response.status_code
-            result = response.text.splitlines()
-            str1=str(result[-2])
-            str1.lstrip()
-            str1=str1.split(": ")
-            st.success(str1[-1]+" "+f"{val2}")
+            #url = f'https://api.apilayer.com/currency_data/convert?to={val2}&from={val1}&amount={amt}'
+#
+#
+            #payload = {}
+            #headers= {"apikey": "3DPMnrLyoZQVDscZKWDpE91WMcq9pVwr"}
+#
+            #response = requests.request("GET", url, headers=headers, data = payload)
+#
+            #status_code = response.status_code
+            #result = response.text.splitlines()
+            #str1=str(result[-2])
+            #str1.lstrip()
+            #str1=str1.split(": ")
+            #st.success(str1[-1]+" "+f"{val2}")
         except:
+            st.write("Error Occured: :sad:")
             #st.success("Something Went Wrong API Error ")
             st.warning('API Error!   You Exhausted your monthly limit 100/100 request', icon="⚠️")
         #st.success(str1[-1]+" "+f"{val2}")
