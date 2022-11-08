@@ -3,7 +3,8 @@ import streamlit as st
 from streamlit_lottie import  st_lottie
 
 #=============function to convert
-def con():
+@st.cache
+def conn(val1,val2,amt):
     url = f'https://api.apilayer.com/currency_data/convert?to={val2}&from={val1}&amount={amt}'
 
 
@@ -17,6 +18,9 @@ def con():
     str1=str(result[-2])
     str1.lstrip()
     str1=str1.split(": ")
+    return str1[-1]
+
+
 
 
 st.set_page_config(page_title="Currency Exchange",page_icon=":currency_exchange:",layout="wide")
@@ -61,32 +65,36 @@ with middle_col2:
     st.write("##")
 
 
-url = f'https://api.apilayer.com/currency_data/convert?to={val2}&from={val1}&amount={amt}'
 
-
-payload = {}
-headers= {
-  "apikey": "3DPMnrLyoZQVDscZKWDpE91WMcq9pVwr"
-}
-
-response = requests.request("GET", url, headers=headers, data = payload)
-
-status_code = response.status_code
-result = response.text.splitlines()
-str1=str(result[-2])
-str1.lstrip()
-str1=str1.split(": ")
 
 
 
 with right_col2:
     if(val1==val2):
         st.write("Converted Amount")
-        st.success(f"{amt}")
+        st.success(f"{amt}"+" "+f"{val1}")
 
     else:
-        st.write("Converted Amount")
-        st.success(str1[-1]+" "+f"{val2}")
+        st.write("Error Occured")
+        try:
+            url = f'https://api.apilayer.com/currency_data/convert?to={val2}&from={val1}&amount={amt}'
+
+
+            payload = {}
+            headers= {"apikey": "3DPMnrLyoZQVDscZKWDpE91WMcq9pVwr"}
+
+            response = requests.request("GET", url, headers=headers, data = payload)
+
+            status_code = response.status_code
+            result = response.text.splitlines()
+            str1=str(result[-2])
+            str1.lstrip()
+            str1=str1.split(": ")
+            st.success(str1[-1]+" "+f"{val2}")
+        except:
+            #st.success("Something Went Wrong API Error ")
+            st.warning('API Error!   You Exhausted your monthly limit 100/100 request', icon="⚠️")
+        #st.success(str1[-1]+" "+f"{val2}")
 
 
 st.markdown('<style> body{text-align:center;} #MainMenu,footer{visibility:hidden;} .css-1dp5vir{visibility:hidden;}</style>',unsafe_allow_html=True)
