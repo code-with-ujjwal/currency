@@ -62,7 +62,7 @@ with left_col2:
    amt= st.number_input(label="Enter Amount")
 
 with middle_col2:
-    st.markdown('-----')
+    st.markdown('')
 
 
 
@@ -97,6 +97,6 @@ with right_col2:
         
 
 
-st.markdown('<style> body{text-align:center;} #MainMenu,footer{visibility:hidden;} .css-1dp5vir{visibility:hidden;}</style>',unsafe_allow_html=True)
+st.markdown('<style> body{text-align:center;} #MainMenu,footer{visibility:hidden;} .css-1dp5vir{visibility:hidden;} .css-1jfmq1g e16nr0p31{display:none;}</style>',unsafe_allow_html=True)
 
 
