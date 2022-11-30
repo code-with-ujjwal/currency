@@ -28,4 +28,7 @@
 
 
 import requests
-
+url = 'https://www.xe.com/currencyconverter/convert/?Amount=5&From=USD&To=INR'
+response = requests.get(url)
+data = response.text
+print(data)

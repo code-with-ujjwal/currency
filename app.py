@@ -27,7 +27,7 @@ st.set_page_config(page_title="Currency Exchange",page_icon=":currency_exchange:
 col1,col2=st.columns(2)
 
 st.header("Currency Exchange :currency_exchange:")
-st.write("Made with :heart: by Sarvar Ansari")
+st.write("Made with :heart: by Sarvar Ansari & Nitish Kushwah")
 
 def img(url):
     res=requests.get(url)
@@ -62,7 +62,7 @@ with left_col2:
    amt= st.number_input(label="Enter Amount")
 
 with middle_col2:
-    st.write("##")
+    st.write("Current Exchange rates")
 
 
 
@@ -83,7 +83,6 @@ with right_col2:
             data = response.text
             liss=data.split('\t')
             dis=str(liss[-1].strip("\n"))
-            #dis.strip("\n")
             dis=dis.replace(",",".")
             st.success(f"{dis}"+" "+f"{val2}")
             
@@ -91,25 +90,11 @@ with right_col2:
 
 
 
-            #url = f'https://api.apilayer.com/currency_data/convert?to={val2}&from={val1}&amount={amt}'
-#
-#
-            #payload = {}
-            #headers= {"apikey": "3DPMnrLyoZQVDscZKWDpE91WMcq9pVwr"}
-#
-            #response = requests.request("GET", url, headers=headers, data = payload)
-#
-            #status_code = response.status_code
-            #result = response.text.splitlines()
-            #str1=str(result[-2])
-            #str1.lstrip()
-            #str1=str1.split(": ")
-            #st.success(str1[-1]+" "+f"{val2}")
+            
         except:
             st.write("Error Occured: :sad:")
-            #st.success("Something Went Wrong API Error ")
             st.warning('API Error!   You Exhausted your monthly limit 100/100 request', icon="⚠️")
-        #st.success(str1[-1]+" "+f"{val2}")
+        
 
 
 st.markdown('<style> body{text-align:center;} #MainMenu,footer{visibility:hidden;} .css-1dp5vir{visibility:hidden;}</style>',unsafe_allow_html=True)
