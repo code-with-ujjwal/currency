@@ -57,9 +57,15 @@ with right_col:
 
 
 
-left_col2,right_col2=st.columns(2)
+left_col2,middle_col2,right_col2=st.columns(3)
 with left_col2:
    amt= st.number_input(label="Enter Amount")
+
+with middle_col2:
+    st.markdown('-----')
+
+
+
 
 
 
