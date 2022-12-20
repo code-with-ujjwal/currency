@@ -27,7 +27,7 @@ st.set_page_config(page_title="Currency Exchange",page_icon=":currency_exchange:
 col1,col2=st.columns(2)
 
 st.header("Currency Exchange :currency_exchange:")
-st.write("Made with :heart: by Sarvar Ansari & Nitish Kushwah")
+st.write("Made with :heart: by Sarvar Ansari & Nitish Kumar")
 
 def img(url):
     res=requests.get(url)
